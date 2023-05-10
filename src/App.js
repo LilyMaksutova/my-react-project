@@ -1,11 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react';
+import { useState } from 'react';
 
 function App() {
-  const [outputText, setOutputText] = useState("Initial text");
+  const [outputText, setOutputText] = useState('Initial text');
 
   function updateTextHandler() {
-    setOutputText("Text was changed");
+    setOutputText('Text was changed');
   }
 
   return (
@@ -23,9 +23,9 @@ function App() {
 //     setIsSubmitted(true);
 //   }
 //   return (
-//       <button onClick={submitHandler}>
-//         {isSubmitted ? "Loading…" : "Submit"}
-//       </button>
+//     <button onClick={submitHandler}>
+//       {isSubmitted ? 'Loading…' : 'Submit'}
+//     </button>
 //   );
 // }
 
