@@ -1,23 +1,46 @@
 import React from 'react';
+import {
+  HomeOutlined,
+  ReadOutlined,
+  RiseOutlined,
+  EditOutlined,
+} from '@ant-design/icons';
+import { Layout, Menu, theme } from 'antd';
+
+const { Sider } = Layout;
 
 function Navbar() {
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+
   return (
-    <nav className="nav">
-      <ul className="nav__list">
-        <li className="nav__link">
-          <a href="/">Home</a>
-        </li>
-        <li className="nav__link">
-          <a href="/">Workout</a>
-        </li>
-        <li className="nav__link">
-          <a href="/">Notes</a>
-        </li>
-        <li className="nav__link">
-          <a href="/">Blog</a>
-        </li>
-      </ul>
-    </nav>
+    <Sider
+      width={300}
+      style={{
+        background: colorBgContainer,
+      }}
+    >
+      <Menu
+        mode="inline"
+        defaultSelectedKeys={['1']}
+        defaultOpenKeys={['']}
+        style={{
+          height: '100%',
+          borderRight: 0,
+        }}
+        items={[
+          { label: 'Домой', key: '1', icon: <HomeOutlined /> },
+          {
+            label: 'Тренировки и прогресс',
+            key: '2',
+            icon: <RiseOutlined />,
+          },
+          { label: 'Заметки', key: '3', icon: <ReadOutlined /> },
+          { label: 'Блог', key: '4', icon: <EditOutlined /> },
+        ]}
+      />
+    </Sider>
   );
 }
 

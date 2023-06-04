@@ -1,15 +1,29 @@
 import React from 'react';
+import { UserOutlined } from '@ant-design/icons';
+import { Typography, Avatar } from 'antd';
+
+const { Text } = Typography;
 
 function Info() {
   return (
-    <div className="info">
-      <div>Logo</div>
-      <div className="user">
-        <img
-          src="https://mobimg.b-cdn.net/v3/fetch/2c/2c38ec7c72e3d0094f591d6f735a3b8e.jpeg"
-          alt=""
-        />
-        <div>username</div>
+    <div
+      style={{
+        margin: '16px 0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}
+    >
+      <div>LOGO</div>
+      <div
+        style={{
+          gap: '10px',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar icon={<UserOutlined />} />
+        <Text>username</Text>
       </div>
     </div>
   );
