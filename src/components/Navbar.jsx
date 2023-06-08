@@ -8,6 +8,10 @@ import {
 import { Layout, Menu, theme } from 'antd';
 
 const { Sider } = Layout;
+const homeLabel = 'Домой';
+const workoutLabel = 'Тренировки и прогресс';
+const notesLabel = 'Заметки';
+const blogLabel = 'Блог';
 
 function Navbar() {
   const {
@@ -30,14 +34,14 @@ function Navbar() {
           borderRight: 0,
         }}
         items={[
-          { label: 'Домой', key: '1', icon: <HomeOutlined /> },
+          { label: homeLabel, key: '1', icon: <HomeOutlined /> },
           {
-            label: 'Тренировки и прогресс',
+            label: workoutLabel,
             key: '2',
             icon: <RiseOutlined />,
           },
-          { label: 'Заметки', key: '3', icon: <ReadOutlined /> },
-          { label: 'Блог', key: '4', icon: <EditOutlined /> },
+          { label: notesLabel, key: '3', icon: <ReadOutlined /> },
+          { label: blogLabel, key: '4', icon: <EditOutlined /> },
         ]}
       />
     </Sider>

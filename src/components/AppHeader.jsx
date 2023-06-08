@@ -1,7 +1,7 @@
 import React from 'react';
-import { Layout, Typography } from 'antd';
+import { Layout } from 'antd';
+// import HeaderTitle from './HeaderTitle';
 
-const { Title } = Typography;
 const { Header } = Layout;
 
 function AppHeader() {
@@ -13,9 +13,7 @@ function AppHeader() {
         justifyContent: 'center',
       }}
     >
-      <Title level={1} style={{ color: 'white' }}>
-        Home Page
-      </Title>
+      {/* <HeaderTitle title="Notes Page" /> */}
     </Header>
   );
 }
