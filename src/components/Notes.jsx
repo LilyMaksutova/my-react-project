@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
-import { Layout, theme, Input, Button, List, Typography } from 'antd';
+import { Input, Button, List, Typography, message } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 
 const { TextArea } = Input;
-const { Content } = Layout;
 
 function Notes() {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
   const [newNote, setNewNote] = useState('');
   const [notes, setNotes] = useState([]);
 
   function addNote() {
     if (!newNote) {
-      alert('Введите заметку');
+      message.error('Введите заметку');
       return;
     }
 
@@ -34,14 +29,7 @@ function Notes() {
   }
 
   return (
-    <Content
-      style={{
-        padding: 24,
-        margin: 0,
-        minHeight: 280,
-        background: colorBgContainer,
-      }}
-    >
+    <>
       <List
         style={{ marginBottom: '35px' }}
         dataSource={notes}
@@ -78,7 +66,7 @@ function Notes() {
           Добавить
         </Button>
       </form>
-    </Content>
+    </>
   );
 }
 

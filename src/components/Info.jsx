@@ -8,7 +8,6 @@ function Info() {
   return (
     <div
       style={{
-        margin: '16px 0',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
