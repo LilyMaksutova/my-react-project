@@ -1,51 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import {
-//   HomeOutlined,
-//   ReadOutlined,
-//   RiseOutlined,
-//   EditOutlined,
-// } from '@ant-design/icons';
-// import { Menu } from 'antd';
+import { ReadOutlined, EditOutlined } from '@ant-design/icons';
+import { Menu } from 'antd';
 
-// const homeLabel = 'Домой';
-// const workoutLabel = 'Тренировки и прогресс';
-// const notesLabel = 'Заметки';
-// const blogLabel = 'Блог';
+function getItem(label, key, icon, children) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+  };
+}
+
+const items = [
+  getItem([
+    <Link to="/notes">
+      <ReadOutlined style={{ marginRight: '20px' }} />
+      Заметки
+    </Link>,
+  ]),
+  getItem([
+    <Link to="/blogs">
+      <EditOutlined style={{ marginRight: '20px' }} />
+      Блог
+    </Link>,
+  ]),
+];
 
 function Navbar() {
   return (
-    // <Menu
-    //   mode="inline"
-    //   defaultSelectedKeys={['1']}
-    //   defaultOpenKeys={['']}
-    //   style={{
-    //     height: '100%',
-    //     borderRight: 0,
-    //   }}
-    //   />
-
-    // items={[
-    //   {label: homeLabel, key: '1', icon: <HomeOutlined /> },
-    //   {
-    //     label: workoutLabel,
-    //     key: '2',
-    //     icon: <RiseOutlined />,
-    //   },
-    //   { label: notesLabel, key: '3', icon: <ReadOutlined /> },
-    //   { label: blogLabel, key: '4', icon: <EditOutlined /> },
-    // ]}
-    // />
-
-    <ul style={{ color: 'white' }}>
-      <li>
-        <Link to="/notes">Заметки</Link>
-      </li>
-      <li>
-        <Link to="/blogs">Блог</Link>
-      </li>
-    </ul>
+    <div>
+      <Menu
+        defaultSelectedKeys={['1']}
+        mode="inline"
+        theme="dark"
+        items={items}
+      />
+    </div>
   );
 }
 
