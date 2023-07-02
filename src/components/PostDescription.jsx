@@ -1,7 +1,7 @@
 import React from 'react';
 
-function PostDescription({ props }) {
-  const { title, img, description } = props;
+function PostDescription({ post }) {
+  const { title, img, description } = post;
   return (
     <div>
       <div

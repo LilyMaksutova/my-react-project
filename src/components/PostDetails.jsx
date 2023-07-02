@@ -1,17 +1,19 @@
 /* eslint-disable react/prop-types */
 import { React } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import PostDescription from './PostDescription';
+import blogList from '../blogData';
 
-function PostDetails({ post }) {
-  const { text } = post;
+function PostDetails() {
+  const { id } = useParams();
+  const post = blogList.filter((data) => data.id === parseInt(id, 10))[0];
+  console.log(post);
   return (
     <div>
       <Link to="/blogs/" style={{ display: 'block', margin: '0 0 30px 20px' }}>
         Вернуться к списку
       </Link>
       <PostDescription post={post} />
-      <p>{text}</p>
     </div>
   );
 }
