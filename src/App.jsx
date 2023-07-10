@@ -9,8 +9,7 @@ import Info from './components/Info';
 import Notes from './components/Notes';
 import PostDetails from './components/PostDetails';
 import Blog from './components/Blog';
-
-// import Post from './components/Post';
+import Timer from './components/Timer';
 
 const { Header } = Layout;
 
@@ -25,14 +24,15 @@ function App() {
         <Info />
       </Header>
       <Layout hasSider>
-        <Sider breakpoint="lg" style={{ minHeight: '100%' }}>
+        <Sider breakpoint="lg">
           <Navbar />
         </Sider>
         <Layout>
           <Routes>
             <Route path="notes" element={<Notes />} />
-            <Route path="/blogs/" element={<Blog />} />
-            <Route path="/blogs/:id" element={<PostDetails />} />
+            <Route path="/blog/" element={<Blog />} />
+            <Route path="/blog/:id" element={<PostDetails />} />
+            <Route path="/timer/" element={<Timer />} />
           </Routes>
         </Layout>
       </Layout>
