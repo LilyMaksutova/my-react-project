@@ -7,10 +7,9 @@ import blogList from '../blogData';
 function PostDetails() {
   const { id } = useParams();
   const post = blogList.filter((data) => data.id === parseInt(id, 10))[0];
-  console.log(post);
   return (
     <div>
-      <Link to="/blogs/" style={{ display: 'block', margin: '0 0 30px 20px' }}>
+      <Link to="/blog/" style={{ display: 'block', margin: '0 0 30px 20px' }}>
         Вернуться к списку
       </Link>
       <PostDescription post={post} />

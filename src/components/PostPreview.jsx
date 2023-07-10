@@ -8,10 +8,7 @@ function PostPreview({ post }) {
   return (
     <div style={{ margin: '40px' }}>
       <PostDescription post={post} />
-      <Link
-        to={`/blogs/${id}`}
-        style={{ display: 'block', textAlign: 'right' }}
-      >
+      <Link to={`/blog/${id}`} style={{ display: 'block', textAlign: 'right' }}>
         {link}
       </Link>
     </div>
