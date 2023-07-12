@@ -10,6 +10,7 @@ import Notes from './components/Notes';
 import PostDetails from './components/PostDetails';
 import Blog from './components/Blog';
 import Timer from './components/Timer';
+import Home from './components/Home';
 
 const { Header } = Layout;
 
@@ -29,6 +30,7 @@ function App() {
         </Sider>
         <Layout>
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="notes" element={<Notes />} />
             <Route path="/blog/" element={<Blog />} />
             <Route path="/blog/:id" element={<PostDetails />} />

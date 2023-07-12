@@ -5,6 +5,7 @@ import {
   ReadOutlined,
   EditOutlined,
   DashboardOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 
@@ -18,6 +19,12 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
+  getItem([
+    <Link to="/">
+      <HomeOutlined style={{ marginRight: '20px' }} />
+      Домой
+    </Link>,
+  ]),
   getItem([
     <Link to="/notes">
       <ReadOutlined style={{ marginRight: '20px' }} />
