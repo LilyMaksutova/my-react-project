@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input, Button, List, Typography, message } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
+import store from '../store';
 
 const { TextArea } = Input;
 
@@ -27,6 +28,17 @@ function Notes() {
     const arr = notes.filter((note) => note.id !== id);
     setNotes(arr);
   }
+
+  useEffect(() => {
+    const savedNotes = store.readData('notes');
+    if (savedNotes) {
+      setNotes(savedNotes);
+    }
+  }, []);
+
+  useEffect(() => {
+    store.addData('notes', notes);
+  }, [notes]);
 
   return (
     <>
