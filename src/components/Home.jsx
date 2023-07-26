@@ -1,12 +1,17 @@
 import React from 'react';
 import { Button, Space } from 'antd';
+import { useSelector } from 'react-redux';
+
 import PostPreview from './PostPreview';
 import blogList from '../blogData';
-import store from '../store';
+
+// TODO: remove duplicates of selector
+const getNotesSelector = (state) => state.notes.notes;
 
 function Home() {
   const elem = blogList[blogList.length - 1];
-  const notes = store.readData('notes');
+  const notes = useSelector(getNotesSelector);
+  // TODO: make a selector for that feature
   const lastNote = Object.values(notes[notes.length - 1] || {})[1];
 
   return (

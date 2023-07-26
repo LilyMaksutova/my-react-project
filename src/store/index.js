@@ -1,22 +1,11 @@
-// APP State
-const initState = {
-  notes: [],
-};
+import { configureStore } from '@reduxjs/toolkit';
 
-class Store {
-  constructor() {
-    this.state = initState;
-  }
+import notesReducer from './notes.store';
 
-  addData(key, val) {
-    this.state[key] = val;
-  }
-
-  readData(key) {
-    return this.state[key];
-  }
-}
-
-const store = new Store();
+const store = configureStore({
+    reducer: {
+        notes: notesReducer,
+    },
+});
 
 export default store;
