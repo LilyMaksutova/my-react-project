@@ -1,44 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { Input, Button, List, Typography, message } from 'antd';
+/* eslint-disable react/jsx-no-bind */
+import React from 'react';
+import { Form, Input, Button, List, Typography, message } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import store from '../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { notesActions } from '../store/notes.store';
 
 const { TextArea } = Input;
 
 function Notes() {
-  const [newNote, setNewNote] = useState('');
-  const [notes, setNotes] = useState([]);
+  const dispatch = useDispatch();
+  const getNotesSelector = (state) => state.notes.notes;
+  const notes = useSelector(getNotesSelector);
+  const addNoteHandler = (note) => dispatch(notesActions.addNote(note));
 
-  function addNote() {
-    if (!newNote) {
+  function onFinish(formData) {
+    if (!formData.noteText) {
       message.error('Введите заметку');
       return;
     }
 
     const note = {
       id: Math.floor(Math.random() * 400),
-      value: newNote,
+      value: formData.noteText,
     };
 
-    setNotes((oldList) => [...oldList, note]);
-    setNewNote('');
+    addNoteHandler(note);
   }
 
+  // TODO: rewrite it with dispatch and reducer
   function deleteNote(id) {
-    const arr = notes.filter((note) => note.id !== id);
-    setNotes(arr);
+    console.log(id);
+    // const arr = notes.filter((note) => note.id !== id);
   }
-
-  useEffect(() => {
-    const savedNotes = store.readData('notes');
-    if (savedNotes) {
-      setNotes(savedNotes);
-    }
-  }, []);
-
-  useEffect(() => {
-    store.addData('notes', notes);
-  }, [notes]);
 
   return (
     <>
@@ -61,23 +54,27 @@ function Notes() {
         )}
       />
 
-      <form
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '4fr 1fr',
-          gap: '20px',
-          alignItems: 'center',
-        }}
+      <Form
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        autoComplete="off"
       >
-        <TextArea
-          rows={4}
-          value={newNote}
-          onChange={(e) => setNewNote(e.target.value)}
-        />
-        <Button type="primary" onClick={() => addNote()}>
-          Добавить
-        </Button>
-      </form>
+        <Form.Item
+          label="Note Text"
+          name="noteText"
+        >
+          <TextArea rows={4} />
+        </Form.Item>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Добавить
+          </Button>
+        </Form.Item>
+      </Form>
     </>
   );
 }
