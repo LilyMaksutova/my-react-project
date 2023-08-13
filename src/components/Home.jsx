@@ -6,13 +6,12 @@ import PostPreview from './PostPreview';
 import blogList from '../blogData';
 
 // TODO: remove duplicates of selector
-const getNotesSelector = (state) => state.notes.notes;
+const getLastNoteSelector = (state) =>
+  Object.values(state.notes.notes[state.notes.notes.length - 1] || {})[1];
 
 function Home() {
   const elem = blogList[blogList.length - 1];
-  const notes = useSelector(getNotesSelector);
-  // TODO: make a selector for that feature
-  const lastNote = Object.values(notes[notes.length - 1] || {})[1];
+  const lastNote = useSelector(getLastNoteSelector);
 
   return (
     <div>

@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    notes: [],
+  notes: [],
 };
 
 const notesSlice = createSlice({
-    name: 'notes',
-    initialState,
-    reducers: {
-        addNote(state, action) {
-            state.notes.push(action.payload);
-        },
-        // deleteNote(state, action) {
-        //     // deletion code here
-        // }
+  name: 'notes',
+  initialState,
+  reducers: {
+    addNote(state, action) {
+      state.notes.push(action.payload);
     },
+    deleteNote(state, action) {
+      return state.notes.filter((note) => note.id !== action.payload.id);
+    },
+  },
 });
 
 export const notesActions = notesSlice.actions;
