@@ -20,7 +20,7 @@ function Notes() {
     }
 
     const note = {
-      id: +Math.floor(Math.random() * 400),
+      id: Math.floor(Math.random() * 400),
       value: formData.noteText,
     };
 

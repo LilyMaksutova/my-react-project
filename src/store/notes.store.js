@@ -9,10 +9,16 @@ const notesSlice = createSlice({
   initialState,
   reducers: {
     addNote(state, action) {
-      state.notes.push(action.payload);
+      return {
+        ...state,
+        notes: state.notes.concat(action.payload),
+      };
     },
     deleteNote(state, action) {
-      return state.notes.filter((note) => note.id !== action.payload.id);
+      return {
+        ...state,
+        notes: state.notes.filter((note) => note.id !== action.payload),
+      };
     },
   },
 });
