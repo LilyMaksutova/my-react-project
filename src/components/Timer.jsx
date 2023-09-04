@@ -4,19 +4,30 @@ import { Button, Space } from 'antd';
 function Timer({ restTimeInSecs = 10 }) {
   const [seconds, setSeconds] = useState(0);
   const deadline = Date.now() + restTimeInSecs * 1000;
+  const interval = React.useRef(null);
 
   const start = () => {
-    const interval = setInterval(() => {
+    interval.current = setInterval(() => {
       const timeDiffInSecs = (deadline - Date.now()) / 1000;
       setSeconds(Math.round(timeDiffInSecs));
 
       if (timeDiffInSecs < 0) {
-        clearInterval(interval);
+        clearInterval(interval.current);
       }
     }, 1000);
   };
 
-  useEffect(start, []);
+  const stop = () => {
+    clearInterval(interval.current);
+  };
+
+  useEffect(() => {
+    if (restTimeInSecs) {
+      start();
+    }
+
+    return () => clearInterval(interval.current);
+  }, []);
 
   return (
     <div
@@ -46,7 +57,9 @@ function Timer({ restTimeInSecs = 10 }) {
         >
           Сброс
         </Button>
-        <Button type="primary" /* onClick={stop} */>Стоп</Button>
+        <Button type="primary" onClick={stop}>
+          Стоп
+        </Button>
         <Button
           type="primary"
           style={{ backgroundColor: 'orange' }}
