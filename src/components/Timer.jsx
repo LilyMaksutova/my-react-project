@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Button, Space } from 'antd';
 
 function Timer({ restTimeInSecs = 10 }) {
   const [seconds, setSeconds] = useState(0);
   const deadline = Date.now() + restTimeInSecs * 1000;
-  const interval = React.useRef(null);
+  const interval = useRef(null);
+  const minutes = Math.floor(seconds / 60);
 
   const start = () => {
     interval.current = setInterval(() => {
@@ -40,7 +41,11 @@ function Timer({ restTimeInSecs = 10 }) {
         height: '100%',
       }}
     >
-      <h1>{`${Math.floor(seconds / 60)} : ${seconds % 60} `}</h1>
+      <h1 style={{ fontSize: '70px' }}>{`${
+        minutes < 10 ? String(0) + minutes : minutes
+      } : ${
+        seconds % 60 < 10 ? String(0) + (seconds % 60) : seconds % 60
+      }`}</h1>
 
       <Space wrap>
         <Button
@@ -50,22 +55,8 @@ function Timer({ restTimeInSecs = 10 }) {
         >
           Старт
         </Button>
-        <Button
-          type="primary"
-          /* onClick={reset} */
-          style={{ backgroundColor: 'red' }}
-        >
-          Сброс
-        </Button>
         <Button type="primary" onClick={stop}>
           Стоп
-        </Button>
-        <Button
-          type="primary"
-          style={{ backgroundColor: 'orange' }}
-          /* onClick={restart} */
-        >
-          Перезапуск
         </Button>
       </Space>
     </div>
