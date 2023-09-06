@@ -27,10 +27,8 @@ function Notes() {
     addNoteHandler(note);
   }
 
-  // TODO: rewrite it with dispatch and reducer
-  function deleteNote(id) {
-    console.log(id);
-    // const arr = notes.filter((note) => note.id !== id);
+  function deleteNoteHandler(id) {
+    dispatch(notesActions.deleteNote(id));
   }
 
   return (
@@ -45,7 +43,9 @@ function Notes() {
               <button
                 type="button"
                 style={{ border: 'none' }}
-                onClick={() => deleteNote(note.id)}
+                onClick={() => {
+                  deleteNoteHandler(note.id);
+                }}
               >
                 <CloseOutlined />
               </button>{' '}
@@ -63,10 +63,7 @@ function Notes() {
         onFinish={onFinish}
         autoComplete="off"
       >
-        <Form.Item
-          label="Note Text"
-          name="noteText"
-        >
+        <Form.Item label="Note Text" name="noteText">
           <TextArea rows={4} />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
