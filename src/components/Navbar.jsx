@@ -26,6 +26,12 @@ const items = [
     </Link>,
   ]),
   getItem([
+    <Link to="/progress">
+      <HomeOutlined style={{ marginRight: '20px' }} />
+      Тренировки и прогресс
+    </Link>,
+  ]),
+  getItem([
     <Link to="/notes">
       <ReadOutlined style={{ marginRight: '20px' }} />
       Заметки
