@@ -43,6 +43,12 @@ const items = [
       Таймер
     </Link>,
   ]),
+  getItem([
+    <Link to="/exercise">
+      <DashboardOutlined style={{ marginRight: '20px' }} />
+      Тренировки
+    </Link>,
+  ]),
 ];
 
 function Navbar() {
