@@ -11,6 +11,7 @@ import PostDetails from './components/PostDetails';
 import Blog from './components/Blog';
 import Timer from './components/Timer';
 import Home from './components/Home';
+import Programs from './components/Programs';
 
 const { Header } = Layout;
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="notes" element={<Notes />} />
             <Route path="/blog/" element={<Blog />} />
+            <Route path="/programs/" element={<Programs />} />
             <Route path="/blog/:id" element={<PostDetails />} />
             <Route path="/timer/" element={<Timer />} />
           </Routes>
