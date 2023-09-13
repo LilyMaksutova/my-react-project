@@ -43,6 +43,12 @@ const items = [
       Таймер
     </Link>,
   ]),
+  getItem([
+    <Link to="/editex">
+      <DashboardOutlined style={{ marginRight: '20px' }} />
+      Редактировать упражнение
+    </Link>,
+  ]),
 ];
 
 function Navbar() {
