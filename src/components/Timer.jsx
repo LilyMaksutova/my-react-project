@@ -1,19 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Button, Space } from 'antd';
 
-function Timer({ restTimeInSecs = 10 }) {
+function Timer({ restTimeInSecs = 15 }) {
   const [seconds, setSeconds] = useState(0);
-  const deadline = Date.now() + restTimeInSecs * 1000;
   const interval = useRef(null);
   const minutes = Math.floor(seconds / 60);
 
-  const start = () => {
+  const start = (deadline) => {
+    clearInterval(interval.current);
     interval.current = setInterval(() => {
       const timeDiffInSecs = (deadline - Date.now()) / 1000;
-      setSeconds(Math.round(timeDiffInSecs));
 
       if (timeDiffInSecs < 0) {
         clearInterval(interval.current);
+        setSeconds(0);
+      } else {
+        setSeconds(Math.round(timeDiffInSecs));
       }
     }, 1000);
   };
@@ -24,7 +26,7 @@ function Timer({ restTimeInSecs = 10 }) {
 
   useEffect(() => {
     if (restTimeInSecs) {
-      start();
+      start(Date.now() + restTimeInSecs * 1000);
     }
 
     return () => clearInterval(interval.current);
@@ -48,13 +50,6 @@ function Timer({ restTimeInSecs = 10 }) {
       }`}</h1>
 
       <Space wrap>
-        <Button
-          type="primary"
-          onClick={start}
-          style={{ backgroundColor: 'green' }}
-        >
-          Старт
-        </Button>
         <Button type="primary" onClick={stop}>
           Стоп
         </Button>
