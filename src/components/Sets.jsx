@@ -1,8 +1,8 @@
 import React from 'react';
 import { List } from 'antd';
-import ApproachesBtn from './ApproachesBtn';
+import SetsBtn from './SetsBtn';
 
-function Approaches() {
+function Sets() {
   const data = ['Подход 1', 'Подход 2', 'Подход 3'];
   return (
     <div>
@@ -14,7 +14,7 @@ function Approaches() {
         renderItem={(item) => (
           <List.Item style={{ display: 'flex' }}>
             {item}
-            <ApproachesBtn />
+            <SetsBtn />
           </List.Item>
         )}
       />
@@ -22,4 +22,4 @@ function Approaches() {
   );
 }
 
-export default Approaches;
+export default Sets;

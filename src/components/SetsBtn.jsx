@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
 
-function ApproachesBtn() {
+function SetsBtn() {
   return (
     <div>
       <Button>
@@ -12,4 +12,4 @@ function ApproachesBtn() {
   );
 }
 
-export default ApproachesBtn;
+export default SetsBtn;
