@@ -8,26 +8,21 @@ function EditExercise() {
   const onFormLayoutChange = ({ layout }) => {
     setFormLayout(layout);
   };
-  const formItemLayout =
-    formLayout === 'horizontal'
-      ? {
-          labelCol: {
-            span: 4,
-          },
-          wrapperCol: {
-            span: 14,
-          },
-        }
-      : null;
-  const buttonItemLayout =
-    formLayout === 'horizontal'
-      ? {
-          wrapperCol: {
-            span: 14,
-            offset: 4,
-          },
-        }
-      : null;
+  const formItemLayout = {
+    labelCol: {
+      span: 4,
+    },
+    wrapperCol: {
+      span: 14,
+    },
+  };
+
+  const buttonItemLayout = {
+    wrapperCol: {
+      span: 14,
+      offset: 4,
+    },
+  };
   return (
     <div>
       <h2 style={{ textAlign: 'center' }}>Упражнение</h2>
