@@ -16,7 +16,7 @@ const { Header } = Layout;
 
 function App() {
   return (
-    <Layout>
+    <Layout style={{ height: '100vh' }}>
       <Header
         style={{
           background: 'lightgray',
