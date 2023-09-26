@@ -1,7 +1,12 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Table, Space } from 'antd';
+import { deleteProgram } from '../store/programs.store';
 
 function ProgramTable() {
+  const { programList } = useSelector((store) => store.programs);
+  const dispatch = useDispatch();
+
   const columns = [
     {
       dataIndex: 'name',
@@ -12,28 +17,21 @@ function ProgramTable() {
         <Space size="middle">
           <a href="/">Сделать текущей</a>
           <a href="/">Edit</a>
-          <a href="/">Delete</a>
+          <button type="button" onClick={() => dispatch(deleteProgram())}>
+            Delete
+          </button>
         </Space>
       ),
     },
   ];
-  const data = [
-    {
-      key: '1',
-      name: 'Программа 1',
-    },
-    {
-      key: '3',
-      name: 'Программа 3',
-    },
-  ];
+
   return (
     <div>
       <Table
         pagination={false}
         style={{ display: 'flex ', justifyContent: 'space-between' }}
         columns={columns}
-        dataSource={data}
+        dataSource={programList}
       />
     </div>
   );
