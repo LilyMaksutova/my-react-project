@@ -1,13 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Form, Input, Select } from 'antd';
 
 function EditExercise() {
   const [form] = Form.useForm();
-  const [formLayout, setFormLayout] = useState('horizontal');
-  const onFormLayoutChange = ({ layout }) => {
-    setFormLayout(layout);
-  };
   const formItemLayout = {
     labelCol: {
       span: 4,
@@ -26,18 +22,7 @@ function EditExercise() {
   return (
     <div>
       <h2 style={{ textAlign: 'center' }}>Упражнение</h2>
-      <Form
-        {...formItemLayout}
-        layout={formLayout}
-        form={form}
-        initialValues={{
-          layout: formLayout,
-        }}
-        onValuesChange={onFormLayoutChange}
-        style={{
-          maxWidth: formLayout === 'inline' ? 'none' : 600,
-        }}
-      >
+      <Form {...formItemLayout} layout="horizontal" form={form}>
         <Form.Item label="Наименование">
           <Input placeholder="Название" />
         </Form.Item>
