@@ -20,8 +20,14 @@ const programSlice = createSlice({
   initialState,
   reducers: {
     deleteProgram: () => console.log('delete'),
+    addProgram(state, action) {
+      return {
+        ...state,
+        programList: state.programList.concat(action.payload),
+      };
+    },
   },
 });
 
-export const { deleteProgram } = programSlice.actions;
+export const { deleteProgram, addProgram } = programSlice.actions;
 export default programSlice.reducer;

@@ -12,6 +12,7 @@ import Blog from './components/Blog';
 import Timer from './components/Timer';
 import Home from './components/Home';
 import Programs from './components/Programs';
+import ProgramEdit from './components/ProgramEdit';
 
 const { Header } = Layout;
 
@@ -34,8 +35,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="notes" element={<Notes />} />
             <Route path="/blog/" element={<Blog />} />
-            <Route path="/programs/" element={<Programs />} />
             <Route path="/blog/:id" element={<PostDetails />} />
+            <Route path="/programs/" element={<Programs />} />
+            <Route path="/programs/add" element={<ProgramEdit />} />
+            <Route path="/programs/:id/edit" element={null} />
             <Route path="/timer/" element={<Timer />} />
           </Routes>
         </Layout>
