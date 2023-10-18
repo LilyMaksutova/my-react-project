@@ -1,11 +1,27 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, Space } from 'antd';
-import { deleteProgram } from '../store/programs.store';
+import { deleteProgram, makeProgramActive } from '../store/programs.store';
 
 function ProgramTable() {
   const { programList } = useSelector((store) => store.programs);
   const dispatch = useDispatch();
+
+  const makeActiveHandler = (id) => (e) => {
+    e.preventDefault();
+    dispatch(makeProgramActive(id));
+  };
+
+  const deleteProgramHandler = (id) => (e) => {
+    e.preventDefault();
+    dispatch(deleteProgram({ id }));
+  };
+
+  const makeActiveProgramComponent = (program) => (
+    <a href="/" onClick={makeActiveHandler(program.id)}>
+      Сделать текущей
+    </a>
+  );
 
   const columns = [
     {
@@ -13,13 +29,13 @@ function ProgramTable() {
     },
     {
       dataIndex: 'operation',
-      render: () => (
+      render: (_text, program) => (
         <Space size="middle">
-          <a href="/">Сделать текущей</a>
+          {program.isActive ? '' : makeActiveProgramComponent(program)}
           <a href="/">Edit</a>
-          <button type="button" onClick={() => dispatch(deleteProgram())}>
-            Delete
-          </button>
+          <a href="/" onClick={deleteProgramHandler(program.id)}>
+            Удалить
+          </a>
         </Space>
       ),
     },

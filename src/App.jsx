@@ -39,6 +39,7 @@ function App() {
             <Route path="/programs/" element={<Programs />} />
             <Route path="/programs/add" element={<ProgramEdit />} />
             <Route path="/programs/:id/edit" element={null} />
+            <Route path="/programs/:id/edit/trainingDays" element={null} />
             <Route path="/timer/" element={<Timer />} />
           </Routes>
         </Layout>
