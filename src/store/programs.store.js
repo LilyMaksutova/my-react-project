@@ -5,8 +5,8 @@ const data = [
     key: '1',
     id: 'program-1',
     name: 'Программа 1',
-    direction: '',
-    description: '',
+    direction: 'direction-1',
+    description: 'description-1',
     isActive: false,
   },
   {
@@ -49,6 +49,7 @@ const programSlice = createSlice({
         programList: state.programList.concat(action.payload),
       };
     },
+    // добавить метод обновления программы
     makeProgramActive(state, action) {
       return {
         ...state,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Table, Space } from 'antd';
 import { deleteProgram, makeProgramActive } from '../store/programs.store';
 
@@ -32,7 +33,7 @@ function ProgramTable() {
       render: (_text, program) => (
         <Space size="middle">
           {program.isActive ? '' : makeActiveProgramComponent(program)}
-          <a href="/">Edit</a>
+          <Link to={`/programs/${program.id}/edit`}>Edit</Link>
           <a href="/" onClick={deleteProgramHandler(program.id)}>
             Удалить
           </a>
