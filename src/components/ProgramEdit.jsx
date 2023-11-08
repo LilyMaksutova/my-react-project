@@ -3,7 +3,8 @@ import React /*  { useState } */ from 'react';
 import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { addProgram } from '../store/programs.store';
+import { v4 as uuidv4 } from 'uuid';
+import { addProgram, updateProgram} from '../store/programs.store';
 
 function ProgramEdit() {
   const dispatch = useDispatch();
@@ -16,10 +17,16 @@ function ProgramEdit() {
 
   const initialValues = editProgram || {};
 
+  console.log(editProgram)
   // добавить условие, которое буде вызывать создание новой сущности, либо обновление существующей
   const onFinishHandler = (formData) => {
-    dispatch(addProgram(formData));
+    if (editProgram?.id)  { //editProgram && editProgram.id
+    dispatch(updateProgram({...editProgram, ...formData}))}
+    else {
+    dispatch(addProgram({...formData, id: uuidv4()})) 
+    }
   };
+
 
   return (
     <Form
@@ -51,7 +58,7 @@ function ProgramEdit() {
         }}
       >
         {location.pathname.split('/').includes('edit') ? (
-          <Link to="/programs/:id/edit/trainingDays">
+          <Link to={`/programs/${editProgram.id}/edit/trainingDays`}>
             Настроить дни тренировок
           </Link>
         ) : (

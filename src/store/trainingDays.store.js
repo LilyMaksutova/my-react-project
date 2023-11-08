@@ -4,8 +4,10 @@ const data = [
   {
     id: 'TrainingDayId-1',
     index: 1,
-    content: '',
-    name: '',
+    name: 'Силовой вторник',
+    description: 'Выполнение силовых упражнений',
+    programId:'program-1',
+    exercises: [{sets: 0, reps: 0, exerciseType: 0}]
   },
 ];
 

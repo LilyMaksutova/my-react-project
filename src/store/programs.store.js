@@ -13,8 +13,8 @@ const data = [
     key: '2',
     id: 'program-2',
     name: 'Программа 2',
-    direction: '',
-    description: '',
+    direction: 'direction-2',
+    description: 'description-2',
     isActive: true,
   },
   {
@@ -49,7 +49,17 @@ const programSlice = createSlice({
         programList: state.programList.concat(action.payload),
       };
     },
-    // добавить метод обновления программы
+    
+    updateProgram(state,action) {
+      // state.programList.filter(program => program.id !== action.payload.id).concat([action.payload]) самое простое решение
+      const result = [];
+      state.programList.forEach(program => program.id !== action.payload.id ? result.push(program) : result.push(action.payload))
+      return {
+        ...state,
+        programList: result
+      };
+    },
+
     makeProgramActive(state, action) {
       return {
         ...state,
@@ -67,6 +77,6 @@ const programSlice = createSlice({
   },
 });
 
-export const { deleteProgram, addProgram, makeProgramActive } =
+export const { deleteProgram, addProgram, makeProgramActive, updateProgram } =
   programSlice.actions;
 export default programSlice.reducer;
