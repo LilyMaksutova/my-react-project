@@ -20,7 +20,7 @@ function ProgramEdit() {
   console.log(editProgram)
   // добавить условие, которое буде вызывать создание новой сущности, либо обновление существующей
   const onFinishHandler = (formData) => {
-    if (editProgram?.id)  { //editProgram && editProgram.id
+    if (editProgram?.id)  { // editProgram && editProgram.id
     dispatch(updateProgram({...editProgram, ...formData}))}
     else {
     dispatch(addProgram({...formData, id: uuidv4()})) 
@@ -58,7 +58,7 @@ function ProgramEdit() {
         }}
       >
         {location.pathname.split('/').includes('edit') ? (
-          <Link to={`/programs/${editProgram.id}/edit/trainingDays`}>
+          <Link to={`/programs/${editProgram.id}/trainingDays`}>
             Настроить дни тренировок
           </Link>
         ) : (

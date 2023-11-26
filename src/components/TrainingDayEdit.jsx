@@ -14,16 +14,12 @@ function TrainingDayEdit() {
   const filterTrainingDays = trainingDays.filter(
     (trainingDay) => {
       const result = trainingDay.programId === programId;
-      
-     
       return result;
     }
   )[0];
 
   const initialValues = filterTrainingDays || {};
   
-
-    console.log(initialValues);
 
   return (
     <Form
@@ -49,61 +45,70 @@ function TrainingDayEdit() {
       >
         {(fields, { add, remove }) => (
           <>
-            {fields.map((field, index) => (
-              <Form.Item               
+            {fields.map(({key, name, ...restField}, index) =>
+              (
+              <Form.Item
                 label={index === 0 ? 'Упражнения' : ''}
                 required={false}
-                key={field.key}
+                key={key}
               >
                 <Form.Item
-                  {...field}                               
+                  name={[name, 'exerciseType']}
+                  {...restField}
                   noStyle
                 >
-                  <Select 
+                  <Select
                     placeholder="Упражнение"
-                    name='exerciseType'
+                    defaultValue='выбери упражнение'
                     style={{
                       width: '33%',
                     }}
-                  > 
-                  {exercises.map((exercise) => 
+                    options={
+                      exercises
+                        .map((exercise) => ({ label: exercise.name, value: exercise.id }))
+                        .concat([{ value: 0, label: "выбери упражнение" }])
+                    }
+                  >
+                  {exercises.map((exercise) =>
                      <Select.Option value={exercise.id} key={exercise.id}>{exercise.name}</Select.Option>
                   )}
                   </Select>
-                
                 </Form.Item> 
                 <Form.Item
-                  {...field}                               
+                  name={[name, 'sets']}
+                  {...restField}
                   noStyle
                 >
                   <Input
                     placeholder="Подходы"
-                    name='sets'
+                    defaultValue='0'
                     style={{
                       width: '33%',
                     }}
                   />
-                </Form.Item>  
+                </Form.Item>
                 <Form.Item
-                  {...field}                               
+                  name={[name, 'reps']}
+                  {...restField}
                   noStyle
                 >
                   <Input
                     placeholder="Повторения"
-                    name='reps'
+                    defaultValue='0'
                     style={{
                       width: '33%',
                     }}
                   />
-                </Form.Item> 
+                </Form.Item>
                 {fields.length > 1 ? (
                   <MinusCircleOutlined
                     className="dynamic-delete-button"
-                    onClick={() => remove(field.name)}
+                    onClick={() => remove(name)}
                   />
                 ) : null}
               </Form.Item>
-            ))}
+              )
+            )}
             <Form.Item>
               <Button
                 type="dashed"

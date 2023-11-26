@@ -13,7 +13,7 @@ import Timer from './components/Timer';
 import Home from './components/Home';
 import Programs from './components/Programs';
 import ProgramEdit from './components/ProgramEdit';
-import TrainingDayEdit from './components/TrainingDayEdit';
+import TrainingDayTable from './components/TrainingDayTable';
 
 const { Header } = Layout;
 
@@ -40,7 +40,7 @@ function App() {
             <Route path="/programs/" element={<Programs />} />
             <Route path="/programs/add" element={<ProgramEdit />} />
             <Route path="/programs/:id/edit" element={<ProgramEdit />} />
-            <Route path="/programs/:id/edit/trainingDays" element={<TrainingDayEdit/>} />
+            <Route path="/programs/:id/trainingDays" element={<TrainingDayTable />} />   
             <Route path="/timer/" element={<Timer />} />
           </Routes>
         </Layout>

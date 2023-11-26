@@ -24,9 +24,14 @@ const trainingDays = createSlice({
       throw new Error('not implemented');
     },
 
-    deleteTrainingDay() {
-      // put your code here
-      throw new Error('not implemented');
+    deleteTrainingDay(state, action) {
+      return {
+        ...state,
+        trainingDays: state.trainingDays.filter((trainingDay) => 
+          trainingDay.id === action.trainingDayId && trainingDay.programId === action.programId
+        )
+      }
+      
     },
   },
 });
