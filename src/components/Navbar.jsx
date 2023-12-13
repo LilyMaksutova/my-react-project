@@ -38,6 +38,12 @@ const items = [
     </Link>,
   ]),
   getItem([
+    <Link to="/programs">
+      <EditOutlined style={{ marginRight: '20px' }} />
+      Программы и упражнения
+    </Link>,
+  ]),
+  getItem([
     <Link to="/timer">
       <DashboardOutlined style={{ marginRight: '20px' }} />
       Таймер
