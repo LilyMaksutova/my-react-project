@@ -1,11 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { Table, Space } from 'antd';
-import { deleteTrainingDay } from '../store/trainingDays.store';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Table, Space, Button } from 'antd';
+import { deleteTrainingDay} from '../store/trainingDays.store';
 
 function TrainingDayTable() {
-  console.log(132);
   const { trainingDays } = useSelector((store) => store.trainingDays);
   const {id: programId} = useParams();
   const filterTrainingDays = trainingDays.filter(
@@ -13,7 +12,7 @@ function TrainingDayTable() {
       const result = trainingDay.programId === programId;
       return result;
     }
-  )[0];
+  );
 
   const dispatch = useDispatch();
 
@@ -21,6 +20,12 @@ function TrainingDayTable() {
     e.preventDefault();
     dispatch(deleteTrainingDay({ trainingDayId, programId: progId}));
   };
+
+  const navigate = useNavigate();
+
+  const goToNew = () => {
+    navigate(`/programs/${programId}/trainingDays/add`)
+  }
 
   const columns = [
     {
@@ -44,6 +49,7 @@ function TrainingDayTable() {
 
   return (
     <div>
+      <Button onClick={goToNew}> Добавить новый тренировочный день</Button>
       <Table
         pagination={false}
         style={{ display: 'flex ', justifyContent: 'space-between' }}

@@ -1,27 +1,49 @@
 /* eslint-disable no-plusplus, react/jsx-props-no-spreading */
 
 import React /*  { useState } */ from 'react';
-import { useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {useNavigate, useParams} from 'react-router-dom';
 import { Form, Input, Button, Select} from 'antd';
 import {MinusCircleOutlined, PlusOutlined} from '@ant-design/icons';
+import { addTrainingDay, updateTrainingDay } from '../store/trainingDays.store';
 
 
 function TrainingDayEdit() {
   const { trainingDays } = useSelector((store) => store.trainingDays);
   const { exercises } = useSelector((store) => store.exercises);
-  const {id: programId} = useParams();
-  const filterTrainingDays = trainingDays.filter(
+  const {id: programId, trainingDayId} = useParams();
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const filterTrainingDay = trainingDays.filter(
     (trainingDay) => {
-      const result = trainingDay.programId === programId;
+      const result = trainingDay.programId.toString() === programId 
+        && trainingDay.id.toString() === trainingDayId;
       return result;
     }
   )[0];
 
-  const initialValues = filterTrainingDays || {};
+  const initialValues = filterTrainingDay || {};
+
+  const saveData = (formData) => {
+    if (trainingDayId) {
+      dispatch(updateTrainingDay({...filterTrainingDay, ...formData}))
+    } else {
+      dispatch(addTrainingDay({...formData, programId}));
+    }
+  };
+
+  const backToList = (e) => {
+    e.preventDefault();
+    navigate(`/programs/${programId}/trainingDays`)
+  }
+
   
 
   return (
+    <>
+    <div><Button onClick={backToList} type='primary'>Назад</Button></div>
     <Form
     name="basic"
       labelCol={{
@@ -31,7 +53,7 @@ function TrainingDayEdit() {
         span: 8,
       }}
       initialValues={initialValues}
-      onFinish={null}
+      onFinish={saveData}
       onFinishFailed={null}
       autoComplete="off">
       <Form.Item label="Название дня" name="name">
@@ -58,8 +80,7 @@ function TrainingDayEdit() {
                   noStyle
                 >
                   <Select
-                    placeholder="Упражнение"
-                    defaultValue='выбери упражнение'
+                    placeholder="Упражнение"                   
                     style={{
                       width: '33%',
                     }}
@@ -81,7 +102,6 @@ function TrainingDayEdit() {
                 >
                   <Input
                     placeholder="Подходы"
-                    defaultValue='0'
                     style={{
                       width: '33%',
                     }}
@@ -94,7 +114,6 @@ function TrainingDayEdit() {
                 >
                   <Input
                     placeholder="Повторения"
-                    defaultValue='0'
                     style={{
                       width: '33%',
                     }}
@@ -119,13 +138,17 @@ function TrainingDayEdit() {
                 icon={<PlusOutlined />}
               >
                 Добавить упражнение
-              </Button>
+              </Button>         
+            </Form.Item>
+            <Form.Item>
+            <Button type="primary" htmlType="submit">Сохранить</Button>
             </Form.Item>
           </>
         )}
+        
       </Form.List>
     </Form>
-    
+    </>
   )
 }
 
